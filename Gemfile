@@ -9,6 +9,8 @@ gem 'rails', '~> 6.0.0'
 gem 'sqlite3', '~> 1.4'
 gem 'pg', '>= 0.18', '< 2.0'
 gem 'rack-cors'
+gem 'active_attr'
+gem 'active_record_api-rest'
 
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
