@@ -10,14 +10,25 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_10_02_135349) do
+ActiveRecord::Schema.define(version: 2019_10_02_142339) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "courses", force: :cascade do |t|
+  create_table "assignments", force: :cascade do |t|
+    t.bigint "course_id", null: false
     t.string "name"
-    t.string "number"
+    t.datetime "date"
+    t.string "description"
+    t.string "points"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["course_id"], name: "index_assignments_on_course_id"
+  end
+
+  create_table "courses", force: :cascade do |t|
+    t.string "course_name"
+    t.string "course_number"
     t.string "section"
     t.string "term"
     t.string "instructor"
@@ -26,13 +37,16 @@ ActiveRecord::Schema.define(version: 2019_10_02_135349) do
     t.datetime "updated_at", precision: 6, null: false
   end
 
-  create_table "syllabuses", force: :cascade do |t|
-    t.bigint "course_id", null: false
-    t.text "base64"
+  create_table "users", force: :cascade do |t|
+    t.string "email"
+    t.string "password"
+    t.string "first_name"
+    t.string "last_name"
+    t.boolean "call"
+    t.boolean "text"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.index ["course_id"], name: "index_syllabuses_on_course_id"
   end
 
-  add_foreign_key "syllabuses", "courses"
+  add_foreign_key "assignments", "courses"
 end
