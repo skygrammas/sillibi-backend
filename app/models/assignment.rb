@@ -1,3 +1,3 @@
 class Assignment < ApplicationRecord
-  belongs_to :course, counter_cache: true;
+  belongs_to :course, counter_cache: true
 end
