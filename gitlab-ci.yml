@@ -1,0 +1,9 @@
+build:
+  retry: 2
+  stage: build
+  image: justindhall/heroku-ci
+  script:
+    - dpl --provider=heroku --app=$HEROKU_APP_NAME --api-key=$HEROKU_API_KEY
+    - heroku rake db:migrate --exit-code --app $HEROKU_APP_NAME
+  only:
+    - /^master$/
